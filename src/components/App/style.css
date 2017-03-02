@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body, main {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #5E6265;
+}
+
+h3 {
+  margin: 0;
+  padding: 15px 0;
+  text-align: center;
+}
+
+h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+section {
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating {
+  animation: rotating 2s linear infinite;
+}
+
+.appContainer {
+  height: calc(100% - 50px);
+  width: 100%;
+  display: flex;
+}
+
+.flex {
+  display: flex;
+}

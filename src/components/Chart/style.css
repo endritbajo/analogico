@@ -1,0 +1,24 @@
+.tile {
+  fill: #323947;
+}
+
+.polyline {
+  stroke:#006600;
+  stroke-width: 2;
+  fill: transparent;
+}
+
+.line {
+	stroke: #7FDBFF;
+  /*stroke: #94E4CA;*/
+  /*stroke: #C9F6E7;*/
+	stroke-width: 3;
+	fill: none;
+  /*pointer-events: none;*/
+}
+
+.line:hover {
+  /*stroke: #7FDBFF;*/
+	stroke-width: 4;
+	/*fill: transparent;*/
+}
