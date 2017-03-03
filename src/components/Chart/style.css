@@ -18,7 +18,7 @@
   /*stroke: #C9F6E7;*/
 	stroke-width: 3;
 	fill: none;
-  transition: stroke-width .15s ease-in-out;
+  transition: stroke-width .2s ease-in-out;
   /*pointer-events: none;*/
 }
 
