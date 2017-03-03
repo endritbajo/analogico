@@ -7,13 +7,13 @@ import { toPoints, toPath } from './spline'
 const posToTransform = ({x, y}) => "matrix(1 0 0 1 " + x +  " " + y + ")"
 
 export const Chart = ({ id, height, width, x, y, points = [], tolerance = 0, highestQuality = true }) => (
-  <g transform={posToTransform({x, y})}>
+  <g transform={posToTransform({x, y})} clipPath='url(#clip1)'>
     <clipPath id="clip1">
       <rect
         width={width}
         height={height}
-        x={-width/2}
-        y={-height/2}
+        x='0'
+        y='0'
         rx='5'
         ry='5'
       />
@@ -22,18 +22,18 @@ export const Chart = ({ id, height, width, x, y, points = [], tolerance = 0, hig
     <rect
       width={width}
       height={height}
-      x={-width/2}
-      y={-height/2}
+      x='0'
+      y='0'
       rx='5'
       ry='5'
       className={styles.tile}
     />
 
-    <path
-      d={points.length > 0 ? toPath(points, tolerance, highestQuality) : ''}
-      className={styles.line}
-      clipPath="url(#clip1)"
-    />
+    <g transform={posToTransform({x:0, y:height / 2})}>
+      <path
+        d={points.length > 0 ? toPath(points, tolerance, highestQuality) : ''}
+        className={styles.line}/>
+    </g>
   </g>
 )
 

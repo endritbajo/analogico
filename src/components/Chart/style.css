@@ -2,6 +2,10 @@
   fill: #323947;
 }
 
+.tileDebug {
+  fill: #fff;
+}
+
 .polyline {
   stroke:#006600;
   stroke-width: 2;
@@ -14,6 +18,7 @@
   /*stroke: #C9F6E7;*/
 	stroke-width: 3;
 	fill: none;
+  transition: stroke-width .15s ease-in-out;
   /*pointer-events: none;*/
 }
 
