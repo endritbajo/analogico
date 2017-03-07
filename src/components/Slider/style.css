@@ -1,0 +1,134 @@
+/*// Base Colors
+$shade-10: #2c3e50 !default;
+$shade-1: #d7dcdf !default;
+$shade-0: #fff !default;
+$teal: #1abc9c !default;*/
+
+/*// Range Slider*/
+/*$range-width: 100% !default;*/
+
+/*$range-handle-color: $shade-10 !default;*/
+/*$range-handle-color-hover: $teal !default;*/
+/*$range-handle-size: 20px !default;*/
+
+/*$range-track-color: $shade-1 !default;*/
+/*$range-track-height: 10px !default;*/
+
+/*$range-label-color: $shade-10 !default;*/
+/*$range-label-width: 60px !default;*/
+
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Reset */
+.slider {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+
+.slider:focus {
+  outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+}
+
+.slider::-ms-track {
+  width: 100%;
+  cursor: pointer;
+
+  /* Hides the slider so custom styles can be added */
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  background: rgba(50, 57, 71, 0.5);
+
+  height: 7px;
+  border-radius: 5px;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*d7dcdf*/
+/*2c3e50*/
+/*1abc9c*/
+/* Chrome */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: solid 7px #323947;
+  background: #7FDBFF;
+  cursor: pointer;
+  transition: background .15s ease-in-out;
+}
+
+/* Firefox */
+.slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border: 0;
+  border-radius: 50%;
+  background: #2c3e50;
+  cursor: pointer;
+  transition: background .15s ease-in-out;
+}
+
+.slider::-moz-focus-inner,
+.slider::-moz-focus-outer {
+  border: 0;
+}
+
+::-moz-range-track {
+  background: #d7dcdf;
+  border: 0;
+}
+
+/* IE */
+.slider::-ms-thumb {
+  width: 15px;
+  height: 15px;
+  border: 0;
+  border-radius: 50%;
+  background: #2c3e50;
+  cursor: pointer;
+  transition: background .15s ease-in-out;
+}
+
+/* Range Label */
+.value {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  color: #fff;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  background: #323947;
+  padding: 5px 10px;
+  margin-left: 10px;
+}
+
+.value:after {
+  position: absolute;
+  top: 8px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-right: 7px solid #323947;
+  border-bottom: 7px solid transparent;
+  content: '';
+}
