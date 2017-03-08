@@ -11,20 +11,23 @@ export class Slider extends Component {
   }
 
   componentWillMount() {
-    const { min = 0, max = 100 } = this.props
     this.setState({
-      value: (max - min) / 2
+      value: this.props.defaultValue || 0
     })
   }
 
   onChange(evt) {
     if (evt.target) {
       this.setState({ value: evt.target.value })
+      if (this.props.onChange) {
+        this.props.onChange(parseInt(evt.target.value))
+      }
     }
   }
 
   render() {
-    const { id, height, width, x, y, min = 0, max = 100 } = this.props
+    // (max - min) / 2
+    const { height, width, x, y, min = 0, max = 100 } = this.props
     return (
       <foreignObject width={width} height={height} x={x} y={y}>
         <div className={styles.container}>

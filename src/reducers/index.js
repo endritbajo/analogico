@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux'
-import nodes from './nodes'
-import connections from './connections'
+import synthesizers from './synthesizers'
 
 const rootReducer = combineReducers({
-  nodes,
-  connections
+  synthesizers,
 })
 
 export default rootReducer

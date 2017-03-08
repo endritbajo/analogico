@@ -1,4 +1,4 @@
-import { NODE_ADD, NODE_SET_DRAGGING, NODE_MOVE, NODE_MOVE_DELTA, CONNECTOR_ADD } from '../constants/ActionTypes'
+import { SET_SLIDER_VALUE } from '../constants/ActionTypes'
 
 const initialState = []
 
