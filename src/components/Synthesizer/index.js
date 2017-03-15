@@ -18,6 +18,8 @@ export const Synthesizer = ({ id, frequency, amplitude, changeAmplitude, changeF
     <Slider width='300' height='100' x='100' y='200' min='0' max='100' defaultValue={amplitude} onChange={changeAmplitude(id)}/>
     <Slider width='300' height='100' x='100' y='250' min='0' max='100' defaultValue={frequency} onChange={changeFrequency(id)}/>
     <Chart id='chart' width='300' height='200' x='100' y='300' points={calcPoints(0, 300, sin(amplitude, frequency))}/>
+
+    <Chart id='chart1' width='300' height='60' x='100' y='530'/>
   </g>
 )
 
