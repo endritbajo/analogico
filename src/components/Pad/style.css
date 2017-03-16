@@ -1,0 +1,26 @@
+.pad {
+  fill: #323947;
+}
+
+.label {
+  fill: #FFFFFF;
+  font-family: Source Sans Pro, monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.label.active {
+  fill: #7FDBFF;
+}
+
+.line {
+  stroke: #FFFFFF;
+  stroke-linecap: round;
+  stroke-width: 1.5px;
+}
+
+.line.active {
+  stroke: #7FDBFF;
+}
