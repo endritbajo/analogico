@@ -5,6 +5,7 @@ export default class AudioPlayer {
     this.context = context
     this.sounds = sounds
     this.buffers = [];
+    
     this.nameToBufferIndex = sounds.reduce((acc, sound, i) => {
       acc[sound.label] = i
       return acc

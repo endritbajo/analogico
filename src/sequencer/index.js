@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './style.css'
+import Board from './components/Board'
 
-const App = ({ children }) => (
+const App = () => (
   <div className={styles.appContainer}>
-    {children}
+    <Board/>
   </div>
 )
 

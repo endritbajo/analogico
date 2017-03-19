@@ -25,7 +25,15 @@ module.exports = {
             }
           }])
         )
-      }
+      },
+      {
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+          loader: 'file?name=fonts/[name].[ext]'
+      },
+      {
+          test: /\.(wav|mp3)$/,
+          loader: 'file?name=audio/[name].[ext]'
+      },
     ],
   },
 
