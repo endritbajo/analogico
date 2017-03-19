@@ -6,15 +6,15 @@ import Pad from '../Pad'
 const sounds = [
   {
     label: 'kick',
-    src: require('../../../assets/audio/kicks/kick.wav'),
+    src: require('assets/audio/kicks/kick.wav'),
   },
   {
     label: 'snare',
-    src: require('../../../assets/audio/snares/snare.wav'),
+    src: require('assets/audio/snares/snare.wav'),
   },
   {
     label: 'hat',
-    src: require('../../../assets/audio/hats/hat.wav'),
+    src: require('assets/audio/hats/hat.wav'),
   },
 ]
 

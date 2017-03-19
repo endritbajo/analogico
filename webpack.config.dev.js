@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   context: __dirname + '/src',
   entry: [ './index.js', './index.html' ],
@@ -33,4 +35,9 @@ module.exports = {
       },
     ],
   },
+  
+  resolve: {
+    root: path.resolve(__dirname + '/src'),
+    extensions: ['', '.js']
+  }
 }
