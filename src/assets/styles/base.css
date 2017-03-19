@@ -55,7 +55,7 @@ section {
 
 @font-face {
   font-family: 'Source Sans Pro';
-  src: url('../assets/fonts/SourceSansPro-Regular.ttf') format('truetype');
+  src: url('../fonts/SourceSansPro-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

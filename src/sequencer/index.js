@@ -2,10 +2,10 @@ import React from 'react'
 import styles from './style.css'
 import Board from './components/Board'
 
-const App = () => (
+const Sequencer = () => (
   <div className={styles.appContainer}>
     <Board/>
   </div>
 )
 
-export default App;
+export default Sequencer;
