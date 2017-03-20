@@ -25,7 +25,7 @@ const start = {
 
 const padDistance = 60
 
-export const Board = ({ synthesizers, height, width }) => (
+export const Board = ({ height, width }) => (
   <div className={style.board}>
     { sounds.map((sound, i) => <Pad key={i} sound={sound} x={start.x + i * padDistance} y={start.y} />) }
   </div>
