@@ -1,4 +1,5 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: __dirname + '/src',
@@ -25,7 +26,15 @@ module.exports = {
             }
           }])
         )
-      }
+      },
+      {
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+          loader: 'file?name=fonts/[name].[ext]'
+      },
+      {
+          test: /\.(wav|mp3)$/,
+          loader: 'file?name=audio/[name].[ext]'
+      },
     ],
   },
 
@@ -37,4 +46,9 @@ module.exports = {
       }
     })
   ],
+  
+  resolve: {
+    root: path.resolve(__dirname + '/src'),
+    extensions: ['', '.js']
+  }
 }

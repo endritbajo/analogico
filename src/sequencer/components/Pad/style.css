@@ -1,0 +1,47 @@
+.pad {
+  position: absolute;
+  background: #323947;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  width: 70%;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  color: #FFFFFF;
+  font-family: 'Source Sans Pro', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  pointer-events: none;
+  user-select: none;
+  margin: 5px;
+}
+
+.label__active {
+  composes: label;
+  color: #7FDBFF;
+}
+
+.line {
+  height: 2px;
+  width: 100%;
+  background: #ffffff;
+  margin: 5px;
+}
+
+.line__active {
+  composes: line;
+  background: #7FDBFF;
+}

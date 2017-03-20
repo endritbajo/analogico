@@ -49,12 +49,13 @@ section {
   animation: rotating 2s linear infinite;
 }
 
-.appContainer {
-  height: calc(100% - 50px);
-  width: 100%;
+.flex {
   display: flex;
 }
 
-.flex {
-  display: flex;
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../fonts/SourceSansPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }

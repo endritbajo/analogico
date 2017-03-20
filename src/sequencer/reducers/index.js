@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux'
-import synthesizers from './synthesizers'
 
 const rootReducer = combineReducers({
-  synthesizers,
+   main: (state, action) => []
 })
 
 export default rootReducer

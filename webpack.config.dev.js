@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   context: __dirname + '/src',
   entry: [ './index.js', './index.html' ],
@@ -23,6 +25,19 @@ module.exports = {
         }
       },
       { test: /\.html$/, loader: "file?name=[name].[ext]" },
+      {
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+          loader: 'file?name=fonts/[name].[ext]'
+      },
+      {
+          test: /\.(wav|mp3)$/,
+          loader: 'file?name=audio/[name].[ext]'
+      },
     ],
   },
+  
+  resolve: {
+    root: path.resolve(__dirname + '/src'),
+    extensions: ['', '.js']
+  }
 }
