@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import style from './style.css'
-import { AudioPlayer, context } from 'shared/audio'
+import { AudioPlayer, context } from 'common/audio'
 
 class Pad extends Component {
   constructor() {

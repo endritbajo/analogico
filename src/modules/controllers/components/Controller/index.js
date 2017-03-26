@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import style from './style.css'
 import Pad from '../Pad'
 
@@ -25,15 +24,10 @@ const start = {
 
 const padDistance = 60
 
-export const Board = ({ height, width }) => (
-  <div className={style.board}>
+const Controller = () => (
+  <div className={style.container}>
     { sounds.map((sound, i) => <Pad key={i} sound={sound} x={start.x + i * padDistance} y={start.y} />) }
   </div>
 )
 
-const maps = [
-  null,
-  null
-]
-
-export default connect(...maps)(Board)
+export default Controller
