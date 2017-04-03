@@ -1,21 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import style from './style.css'
 import Pad from '../Pad'
-
-const sounds = [
-  {
-    label: 'kick',
-    src: require('assets/audio/kicks/kick.wav'),
-  },
-  {
-    label: 'snare',
-    src: require('assets/audio/snares/snare.wav'),
-  },
-  {
-    label: 'hat',
-    src: require('assets/audio/hats/hat.wav'),
-  },
-]
+import { actions, selectors } from '../../state'
 
 const start = {
   x: 100,
@@ -24,10 +11,19 @@ const start = {
 
 const padDistance = 60
 
-const Controller = () => (
+const Controller = ({ id, pads, setPadPressed }) => (
   <div className={style.container}>
-    { sounds.map((sound, i) => <Pad key={i} sound={sound} x={start.x + i * padDistance} y={start.y} />) }
+    { pads.map((pad, i) => <Pad key={pad.id} sound={pad.sound} onActiveChange={setPadPressed(id, pad.id)} x={start.x + i * padDistance} y={start.y} />) }
   </div>
 )
 
-export default Controller
+const maps = [
+  (state, ownProps) => ({
+    pads: selectors.getControllerData(state, { controllerId: ownProps.id })
+  }),
+  (dispatch) => ({
+    setPadPressed: (controllerId, padId) => pressed => dispatch(actions.setPressedInput(controllerId, padId, pressed))
+  })
+]
+
+export default connect(...maps)(Controller)

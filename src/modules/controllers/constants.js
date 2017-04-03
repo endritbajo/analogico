@@ -1,1 +1,1 @@
-export const NAME = 'controller'
+export const NAME = 'controllers'
