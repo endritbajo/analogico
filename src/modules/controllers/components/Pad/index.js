@@ -14,16 +14,22 @@ class Pad extends Component {
   }
 
   handleMouseEvent(event) {
-    this.setState({ padActive: event.type === 'mousedown' })
-    if (this.state.padActive) {
+    const active = event.type === 'mousedown'
+    if (active) {
       this.player.play(this.props.sound.label)
     }
+    if (this.props.onActiveChange) {
+      this.props.onActiveChange(active)
+    }
+    this.setState({ padActive: active })
   }
 
   render() {
     const { sound, x, y } = this.props
     const labelClass = this.state.padActive ? style.label__active : style.label
     const lineClass = this.state.padActive ? style.line__active : style.line
+    // get the mouse events from the document not from the element
+    // if you get from the document you know when the mouse is up
     return (
       <div className={style.pad}
           onMouseDown={this.handleMouseEvent}

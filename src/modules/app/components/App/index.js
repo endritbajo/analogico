@@ -9,7 +9,7 @@ const Sequencer = sequencer.components.Sequencer;
 
 export const App = () => (
   <div className={style.board}>
-    <Controller />
+    <Controller id='1' />
     <Sequencer />
   </div>
 )
