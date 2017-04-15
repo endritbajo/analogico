@@ -11,9 +11,14 @@ const start = {
 
 const padDistance = 60
 
-const Controller = ({ id, pads, setPadPressed }) => (
+const Controller = ({ id, pads, onPress, setPadPressed }) => (
   <div className={style.container}>
-    { pads.map((pad, i) => <Pad key={pad.id} sound={pad.sound} onActiveChange={setPadPressed(id, pad.id)} x={start.x + i * padDistance} y={start.y} />) }
+    { pads.map((pad, i) => <Pad key={pad.id} sound={pad.sound} onActiveChange={() => {
+      setPadPressed(id, pad.id);
+      if (onPress) {
+        onPress(pad.id, new Date());
+      }
+    }} x={start.x + i * padDistance} y={start.y} />) }
   </div>
 )
 

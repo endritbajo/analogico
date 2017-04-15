@@ -2,12 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import style from './style.css'
 import controllers from 'modules/controllers'
+import sequencer from 'modules/sequencer'
 
-const Sequencer = ({ pressedInputs }) => (
-  <div>
-    Sequencer: { pressedInputs }
-  </div>
-)
+const Sequencer = ({ pressedInputs }) => {
+  return (
+    <div>
+      Sequencer: { pressedInputs }
+    </div>
+  )
+}
 
 const maps = [
   state => ({
@@ -15,7 +18,7 @@ const maps = [
       controllerId: '1'
     })
   }),
-  null
+  null,
 ]
 
 export default connect(...maps)(Sequencer)
