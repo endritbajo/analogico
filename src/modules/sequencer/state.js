@@ -2,44 +2,64 @@
 const PLAY = 'sequencer/PLAY'
 const PAUSE = 'sequencer/PAUSE'
 const STOP = 'sequencer/STOP'
-const REGISTER = 'sequencer/REGISTER'
+
+const START_RECORDING = 'sequencer/START_RECORDING'
+const STOP_RECORDING = 'sequencer/STOP_RECORDING'
 
 
 // Actions
-export const play = () => ({
+const play = () => ({
   type: PLAY,
   payload: {}
 });
 
-export const pause = () => ({
+const pause = () => ({
   type: PAUSE,
   payload: {}
 });
 
-export const stop = () => ({
+const stop = () => ({
   type: STOP,
   payload: {}
 });
 
-export const register = (instrument, time) => ({
-  type: REGISTER,
-  payload: {}
+const startRecording = (instrument, time) => ({
+  type: START_RECORDING,
+  payload: { instrument, time }
 });
 
+const stopRecording = () => ({
+  type: STOP_RECORDING
+});
+
+
+export const actions = { play, pause, stop, startRecording, stopRecording }
+
 // Reducer
-const initialState = {
-  state: 'stopped'
+const States = {
+  PLAYING: 'playing',
+  PAUSED: 'paused',
+  STOPPED: 'stopped',
+  RECORDING: 'recording',
 }
 
-export default (state = initialState, action) => {
+const initialState = {
+  state: States.STOPPED,
+  song: []
+}
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case PLAY:
-      return 'playing'
-    case PAUSE:
-      return 'paused'
-    case STOP:
-      return 'stopped'
+    case START_RECORDING:
+      const { instrument, time } = action.payload
+      return {
+        state: state.state,
+        song: [...state.song, { instrument, time }]
+      }
     default:
       return state
   }
 }
+
+// Selectors
+export const selectors = {}

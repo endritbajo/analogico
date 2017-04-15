@@ -1,6 +1,5 @@
 import components from './components'
-import reducer from './state'
-import * as actions from './state'
+import { actions, reducer } from './state'
 import * as constants from './constants'
 // import * as selectors from './selectors';
 
