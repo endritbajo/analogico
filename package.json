@@ -35,9 +35,12 @@
     "npm": ">=3.x"
   },
   "dependencies": {
+    "lodash": "^4.17.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-draggable": "^2.2.6",
     "react-redux": "^4.4.5",
+    "recompose": "^0.23.4",
     "redux": "^3.6.0"
   }
 }

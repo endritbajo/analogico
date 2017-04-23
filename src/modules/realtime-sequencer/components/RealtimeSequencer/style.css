@@ -1,0 +1,68 @@
+.loops {
+  background: #323947;
+  height: 199px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.green {
+  background: #42B28D;
+}
+
+.progressLine,
+.progressBg {
+  margin-top: 7px;
+}
+
+.transitionBg {
+  animation-name: exampleBg;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+}
+
+.transition {
+  animation-name: example;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+}
+
+@keyframes exampleBg {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes example {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.progressBg {
+  background: #7FDBFF;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 4;
+  opacity: 0.03;
+}
+
+.progressLine {
+  z-index: 4;
+  background: #7FDBFF;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+  opacity: 0.5;
+}

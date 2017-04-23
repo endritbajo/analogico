@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import app from './app';
-import sequencer from './sequencer';
-import controllers from './controllers';
+import padControllers from './pad-controllers';
+import realtimeSequencer from './realtime-sequencer';
 
 export default combineReducers({
   [app.constants.NAME]: app.reducer,
-  [sequencer.constants.NAME]: sequencer.reducer,
-  [controllers.constants.NAME]: controllers.reducer
+  [padControllers.constants.NAME]: padControllers.reducer,
+  [realtimeSequencer.constants.NAME]: realtimeSequencer.reducer
 });

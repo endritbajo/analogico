@@ -1,8 +1,8 @@
 import rootReducer from './rootReducer'
 // Modules
 import app from './app'
-import sequencer from './sequencer'
-import controllers from './controllers'
+import realtimeSequencer from './realtime-sequencer'
+import padControllers from './pad-controllers'
 
 export const reducer = rootReducer
-export default { app, sequencer, controllers }
+export default { app, realtimeSequencer, padControllers }
