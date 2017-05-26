@@ -1,18 +1,23 @@
+.realtimeSequencer {
+  background: #3C4556;
+}
+
 .loops {
-  background: #323947;
-  height: 199px;
+  height: 100%;
   width: 100%;
-  position: absolute;
-  bottom: 0;
+  position: relative;
+}
+
+.loops > * {
+  margin-top: 2px;
+}
+
+.content {
+  position: relative;
 }
 
 .green {
   background: #42B28D;
-}
-
-.progressLine,
-.progressBg {
-  margin-top: 7px;
 }
 
 .transitionBg {

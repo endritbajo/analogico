@@ -1,0 +1,40 @@
+.button {
+  height: 22px;
+  font-family: 'Source Sans Pro', monospace;
+  font-size: 13px;
+  border-radius: 10px;
+  user-select: none;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  border: 1px solid;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #42B28D;
+  border-color: #42B28D;
+}
+
+.button:not(.active):hover {
+  background-color: rgb(54, 83, 87);
+}
+
+.active {
+  color: rgb(42, 88, 73);
+  background-color: #42B28D;
+}
+
+.red {
+  color: #B85E5E;
+  border-color: #B85E5E;
+}
+
+.red:not(.active):hover {
+  background-color: rgb(82, 70, 81);
+}
+
+.red.active {
+  color: rgb(90, 45, 45);
+  background-color: #B85E5E;
+}

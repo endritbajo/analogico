@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import style from './style.css'
 import app from 'modules/app'
+import shared from 'modules/shared'
 import padControllers from 'modules/pad-controllers'
 import realtimeSequencer from 'modules/realtime-sequencer'
+import Modal from '../Modal'
 import RecordButton from '../RecordButton'
 import PlayButton from '../PlayButton'
 import { samples } from 'common/audio'
@@ -11,6 +13,7 @@ import { samples } from 'common/audio'
 const State = realtimeSequencer.constants.State;
 const PadController = padControllers.components.PadController;
 const RealtimeSequencer = realtimeSequencer.components.RealtimeSequencer;
+const Window = shared.components.Window;
 
 const toggleRecording = (sequencerState, startRecording, stopRecording) => () => {
     if (sequencerState !== State.RECORDING) {
@@ -30,19 +33,15 @@ const togglePlay = (sequencerState, play, stop) => () => {
 
 export const App = ({play, stop, sequencerState, startRecording, stopRecording, record, controllers}) => (
   <div className={style.board}>
-    <div className={style.modal}>
-      <div className={style.modalContent}>
-        pad controller
-      </div>
-    </div>
+    <Modal show={false} />
     <div className={style.actionsContainer}>
-      <div className={style.actions}> 
+      <div className={style.actions}>
         <PlayButton
           className={style.action}
           isPlaying={sequencerState === State.PLAYING}
           onClick={togglePlay(sequencerState, play, stop)}/>
         <RecordButton
-          className={style.action} 
+          className={style.action}
           isRecording={sequencerState === State.RECORDING}
           onClick={toggleRecording(sequencerState, startRecording, stopRecording)}/>
       </div>
@@ -50,17 +49,20 @@ export const App = ({play, stop, sequencerState, startRecording, stopRecording, 
 
     <div className={style.controllers}>
       { controllers.map(id =>
-        <PadController
-          key={id}
-          id={id}
-          rows='1'
-          columns='3'
-          onPress={record.bind(this)}
-        />
+        <Window key={id} width={190} height={190} title='pad controller'>
+          <PadController
+            id={id}
+            rows='1'
+            columns='3'
+            onPress={(instrument) => record(id, instrument)}
+          />
+        </Window>
       )}
     </div>
 
-    <RealtimeSequencer/>
+    <Window width={400} title='sequencer'>
+      <RealtimeSequencer/>
+    </Window>
   </div>
 )
 
@@ -74,7 +76,7 @@ const maps = [
     stop: () => dispatch(realtimeSequencer.actions.stop()),
     startRecording: () => dispatch(realtimeSequencer.actions.startRecording()),
     stopRecording: () => dispatch(realtimeSequencer.actions.stopRecording()),
-    record: (instrument) => dispatch(realtimeSequencer.actions.record(instrument))
+    record: (controllerId, instrument) => dispatch(realtimeSequencer.actions.record(controllerId, instrument))
   }),
 ]
 

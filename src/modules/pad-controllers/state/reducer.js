@@ -4,6 +4,9 @@ import { samples } from 'common/audio'
 const initialState = {
   '1': {
     pads: samples.map((sample, i) => ({ id: i, label: sample.label, sound: sample.src })),
+  },
+  '2': {
+    pads: samples.map((sample, i) => ({ id: i, label: sample.label, sound: sample.src })),
   }
 }
 

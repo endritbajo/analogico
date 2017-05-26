@@ -2,10 +2,43 @@ import React, { Component } from 'react'
 import Tone from 'tone'
 import { connect } from 'react-redux'
 import { samples } from 'common/audio'
+import { branch, renderNothing } from 'recompose'
+import Toolbar from '../Toolbar'
 import Loop from '../Loop'
-import Hit from '../Hit'
 import { selectors } from '../../state'
 import style from './style.css'
+
+const hideIfNoData = hasNoData =>
+  branch(
+    hasNoData,
+    renderNothing
+  )
+
+const enhance = hideIfNoData(
+  props => !props.show
+)
+
+const ProgressBar = ({duration, play, stop}) => {
+  //const progressBg = `${style.progressBg} ${play ? style.transitionBg : ''}`
+  const progressLine = `${style.progressLine} ${play ? style.transition : ''}`
+  const animationDuration = {
+    animationDuration: `${duration}s`
+  }
+  return (
+    <div style={animationDuration} className={progressLine}></div>
+  )
+}
+
+const Loops = ({children}) => {
+  return <div className={style.loops}>{children}</div>
+}
+
+const getPlayer = (urls) => new Tone.MultiPlayer({
+  urls,
+  volume: -10,
+  fadeOut: 0.1,
+}).toMaster()
+
 
 class RealtimeSequencer extends Component {
   constructor(props) {
@@ -23,22 +56,20 @@ class RealtimeSequencer extends Component {
       return acc
     }, {})
 
-    this.player = new Tone.MultiPlayer({
-      urls,
-      volume: -10,
-      fadeOut: 0.1,
-    }).toMaster()
-
-    this.updateState(this.props)
+    this.player = getPlayer(urls)
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.loops != nextProps.loops) {
+      this.loop = this.createLoop(this.player, nextProps.loops)
+    }
     if (this.props.state !== nextProps.state) {
       this.updateState(nextProps)
     }
   }
 
-  createLoop(player, track) {
+  createLoop(player, loops) {
+    const track = Object.values(loops).reduce((a, c) => [...a, ...c], [])
     const part = track.reduce((acc, curr) => [...acc, [curr.time, curr.instrument]], [])
     const tone = new Tone.Part((time, instrument) => {
       player.start(instrument, time);
@@ -48,56 +79,50 @@ class RealtimeSequencer extends Component {
     return tone
   }
 
-  play(loop) {
-    loop.start()
-  }
-
-  stop(loop) {
-    loop.stop()
-  }
-
   updateState (props) {
-    this.loop = this.createLoop(this.player, props.track)
-
+    if (!this.loop) {
+      return;
+    }
     if (props.state === 'playing') {
-      this.play(this.loop)
+      this.loop.start();
     } else {
-      this.stop(this.loop)
+      this.loop.stop();
     }
   }
 
-  isPlaying() {
-    return this.props.state === 'playing' || this.props.state === 'recording'
+  shouldShowProgress(props) {
+    return props.state === 'playing' || props.state === 'recording'
   }
 
   render() {
-    const times = this.props.track.map(hit => hit.time)
-    const positions = times.map(time => time / this.state.length)
-    const progressBg = `${style.progressBg} ${this.isPlaying() ? style.transitionBg : ''}`
-    const progressLine = `${style.progressLine} ${this.isPlaying() ? style.transition : ''}`
-    const duration = {
-      animationDuration: '18s'
+    const loops = Object.keys(this.props.loops);
+    const getControllerName = (controllers, controllerId) => {
+      const controller = controllers
+        .find(controller => controller.id === controllerId)
+      return controller ? controller.name : ''
     }
-    const paddingTop = {
-      paddingTop: '7px'
-    }
-    const greenHit = `${style.hit} ${style.green}`
+    const renderProgressBar = (show) => show
+      ? <ProgressBar duration={this.state.length} play={this.shouldShowProgress(this.props)}/>
+      : null;
+
     return (
-      <div className={style.loops}>
-        <div style={duration} className={progressBg}></div>
-        <div style={duration} className={progressLine}></div>
-        <div style={paddingTop}></div>
-        <Loop>
-          
-          { this.props.track.map((hit, i) => {
-              const pos = hit.time / this.state.length
-              return <Hit key={i} position={pos} color='#42B28D'/>
-            })
-          }
-        </Loop>
-        <Loop />
-        <Loop />
-        <Loop />
+      <div className={style.realtimeSequencer}>
+        <Toolbar />
+        <div className={style.content}>
+          { renderProgressBar(this.shouldShowProgress(this.props)) }
+          <Loops>
+            {
+              loops.map(key =>
+                <Loop key={key}
+                  name={getControllerName(this.props.controllers, key)}
+                  hits={this.props.loops[key]}
+                  duration={this.state.length}
+                  color='#42B28D'
+                />
+              )
+            }
+          </Loops>
+        </div>
       </div>
     )
   }
@@ -106,7 +131,8 @@ class RealtimeSequencer extends Component {
 const maps = [
   state => ({
     samples,
-    track: selectors.getTrack(state),
+    controllers: selectors.getControllers(state),
+    loops: selectors.getLoops(state),
     state: selectors.getState(state),
   }),
   null

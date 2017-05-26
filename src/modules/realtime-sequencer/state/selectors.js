@@ -1,9 +1,14 @@
 import { createSelector } from 'reselect'
 import { NAME } from '../constants'
 
-const getTrack = createSelector(
-  state => state[NAME].track,
-  track => track
+const getControllers = createSelector(
+  state => state[NAME].controllers,
+  controllers => controllers
+)
+
+const getLoops = createSelector(
+  state => state[NAME].loops,
+  loops => loops
 )
 
 const getState = createSelector(
@@ -11,4 +16,4 @@ const getState = createSelector(
   state => state
 )
 
-export default { getTrack, getState }
+export default { getControllers, getLoops, getState }

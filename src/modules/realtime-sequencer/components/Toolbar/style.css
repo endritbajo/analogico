@@ -1,0 +1,21 @@
+.toolbar {
+  background: #363F4E;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.controls {
+  width: 140px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls > *:not(:last-child) {
+  margin-right: 5px;
+}

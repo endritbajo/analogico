@@ -25,9 +25,9 @@ const stopRecording = () => ({
   payload: null
 })
 
-const record = (instrument) => ({
+const record = (controllerId, instrument) => ({
   type: types.RECORD,
-  payload: { instrument, time: new Date() }
+  payload: { controllerId, hit: { instrument, time: new Date() } }
 })
 
 export default { play, pause, stop, startRecording, stopRecording, record }

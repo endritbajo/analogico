@@ -31,21 +31,29 @@ class Pad extends Component {
     const { label, sound } = this.props
     const labelClass = this.state.padActive ? style.label__active : style.label
     const lineClass = this.state.padActive ? style.line__active : style.line
-    let color = {}
+    let inlineStyle = {}
     if (this.props.color) {
-      color =  {
+      inlineStyle =  {
         backgroundColor: this.props.color
       }
+    }
+
+    if (this.props.size) {
+      inlineStyle = Object.assign({}, inlineStyle, {
+        width: `${this.props.size}px`,
+        height: `${this.props.size}px`,
+      });
     }
     // get the mouse events from the document not from the element
     // if you get from the document you know when the mouse is up
     return (
-      <div style={color} className={style.pad}
+      <div style={inlineStyle} className={style.pad}
           onMouseDown={this.handleMouseEvent}
           onMouseUp={this.handleMouseEvent}
           onMouseLeave={this.handleMouseEvent}>
         <div className={style.content}>
           <div className={style.label}>
+            {label}
           </div>
         </div>
       </div>
