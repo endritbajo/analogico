@@ -9,7 +9,7 @@
 }
 
 .controls {
-  width: 140px;
+  width: 120px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -18,4 +18,8 @@
 
 .controls > *:not(:last-child) {
   margin-right: 5px;
+}
+
+.controls {
+  margin-top: 1.5px;
 }

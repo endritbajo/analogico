@@ -47,6 +47,10 @@ export const App = ({play, stop, sequencerState, startRecording, stopRecording, 
       </div>
     </div>
 
+    <Window width={400} title='sequencer'>
+      <RealtimeSequencer/>
+    </Window>
+
     <div className={style.controllers}>
       { controllers.map(id =>
         <Window key={id} width={190} height={190} title='pad controller'>
@@ -59,10 +63,6 @@ export const App = ({play, stop, sequencerState, startRecording, stopRecording, 
         </Window>
       )}
     </div>
-
-    <Window width={400} title='sequencer'>
-      <RealtimeSequencer/>
-    </Window>
   </div>
 )
 

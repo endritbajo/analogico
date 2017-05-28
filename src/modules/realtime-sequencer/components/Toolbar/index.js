@@ -5,7 +5,6 @@ import shared from 'modules/shared'
 import style from './style.css'
 
 const Button = shared.components.Button
-const buttonColors = shared.constants.Color;
 
 const togglePlay = (isPlaying, play, stop) => ()  => isPlaying ? stop() : play()
 const toggleRecord = (isRecording, start, stop) => () => isRecording ? stop() : start()
@@ -17,8 +16,7 @@ const Toolbar = ({isPlaying, isRecording, play, stop, startRecording, stopRecord
         play
       </Button>
       <Button pressed={isRecording}
-              onClick={togglePlay(isRecording, startRecording, stopRecording)}
-              color={buttonColors.RED}>
+              onClick={togglePlay(isRecording, startRecording, stopRecording)}>
         record
       </Button>
     </div>
